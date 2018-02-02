@@ -1,5 +1,6 @@
 .wrapper {
   background-color: #fff!important;
+  position: static;
 }
 
 .login-box-body {
