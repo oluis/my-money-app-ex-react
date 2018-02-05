@@ -34,8 +34,8 @@ class Auth extends Component {
          this.onSubmit(v))}>
          <Field component={Input} type="input" name="name"
             placeholder="Nome" icon='user' hide={loginMode}/>
-         <Field component={Input} type="email"name="email"
-            placeholder="E-mail" icon='envelope'/>
+          <Field component={Input} type="input"name="email"
+            placeholder="login" icon='envelope'/>
          <Field component={Input} type="password" name="password"
             placeholder="Senha"icon='lock'/>
          <Field component={Input} type="password" name="confirm_password"
