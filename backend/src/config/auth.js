@@ -3,6 +3,10 @@ const env = require('../.env')
 
 module.exports = (req, res, next) => {
   // CORS config
+  if('a'==='a'){
+    next();
+    return;
+  }
   if (req.method === 'OPTIONS') {
     next()
   } else {
