@@ -12,3 +12,7 @@ button{
   width: 150px;
   text-align: center;
 }
+
+.boxpaddingleft {
+  padding-left: 15px;
+}

@@ -16,7 +16,10 @@ export function getList(){
 
 export function showUpdate(user){
   return [
-    initialize('usuarioForm', user)
+    initialize('usuarioForm', user), {
+      type: 'EDIT_USER',
+      payload: user
+    }
   ]
 }
 
@@ -65,20 +68,4 @@ export function remove(values){
 
 export function cancel(values){
   console.log(values)
-}
-
-export function editUser(user){
-  // return [
-  //   initialize('usuarioForm', {nome: 'osorio teste'})
-  // ]
-  return {
-    type: 'EDIT_USER',
-    payload: !user
-  }
-
-  // user.edit = true;
-  // return {
-  //   type: 'EDIT_USER',
-  //   payload: request
-  // }
 }

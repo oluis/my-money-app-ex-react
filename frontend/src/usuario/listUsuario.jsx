@@ -16,64 +16,65 @@ import Form from './usuarioForm'
 //import Form from './billingCycleForm'
 import If from '../common/operador/if'
 
-import {create, update, remove, init, editUser} from './usuariosActions'
+import {create, update, remove, init, showUpdate} from './usuariosActions'
 
-class CadUsuario extends Component {
+class ListUsuario extends Component {
 
   componentWillMount() {
     this.props.init()
   }
 
   renderRows() {
-    const list = this.props.list || [
-      {
-        name: 'teste'
-      }
-    ]
-
-
-    var visible = this.props.modeEdit;
-    console.log(visible == false ? {display: 'none;'} : {});
+    const list = this.props.list || []
     return list.map(bc => (<tr key={bc._id}>
-
-
-        <td style={{display: visible ? 'block' : 'none' }}>{bc.name}</td>
-        <If test={visible}>
-        <td className='table-actions' style={visible == false ? {display: 'none;'} : {}}>
-
-          <button className='btn btn-warning' onClick={() => this.props.editUser(this.props.modeEdit)}>
+<If test={!bc.modeEdit}>
+      <td>
+        {bc._id}
+      </td>
+</If>
+<If test={!bc.modeEdit}>
+      <td>
+        {bc.name}
+      </td>
+</If>
+<If test={!bc.modeEdit}>
+      <td>
+        {'' + bc.email}
+      </td>
+</If>
+<If test={!bc.modeEdit}>
+        <td className='table-actions'>
+          <button className='btn btn-warning' onClick={() => this.props.showUpdate(bc)}>
             <i className='fa fa-pencil'></i>
           </button>
           <button className='btn btn-danger' onClick={() => this.props.remove(bc)}>
             <i className='fa fa-trash-o'></i>
           </button>
-
         </td>
-        </If>
-        <If test={!visible}>
-          <td colSpan={2}>
-            <Form />
-          </td>
-        </If>
-
-
-
+</If>
+      <If test={bc.modeEdit}>
+        <td colSpan={4}>
+          <Form/>
+        </td>
+      </If>
     </tr>))
   }
 
   render() {
     return (<div>
-      <ContentHeader title='Usuários' small='Cadastro'/>{this.state}
+      <ContentHeader title='Usuários' small='Lista'/>{this.state}
       <Content>
         <div className='row'>
           <div className='col-md-12'>
             <div className="box box-solid">
               <div className="box-body">
-                <table className='table'>
+                <table className='table table-striped'>
                   <thead>
                     <tr>
-                      <th>Nome</th>
-                      <th className='table-actions'>Ações</th>
+                      <th style={{width: '10%'}}>Id</th>
+                      <th style={{width: '20%'}}>Nome</th>
+                      <th style={{width: '60%'}}>Login</th>
+                      <th style={{width: '10%'}} className='table-actions'>Ações</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -89,15 +90,12 @@ class CadUsuario extends Component {
   }
 }
 const selector = formValueSelector('usuarioForm')
-const mapStateToProps = state => ({
-  list: state.usuario.list,
-  modeEdit : state.usuario.modeEdit
-})
+const mapStateToProps = state => ({list: state.usuario.list})
 const mapDispatchToProps = dispatch => bindActionCreators({
   create,
   update,
   remove,
   init,
-  editUser
+  showUpdate
 }, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(CadUsuario)
+export default connect(mapStateToProps, mapDispatchToProps)(ListUsuario)
