@@ -9,8 +9,9 @@ import If from '../common/operador/if'
 class UsuarioForm extends Component {
 
   render(){
+    const {handleSubmit} = this.props
     return (
-      <form role='formUser' onSubmit={init} className='form-horizontal'>
+      <form role='formUser' onSubmit={init} className='form-horizontal' onSubmit={handleSubmit}>
         <div className='box box-default boxpaddingleft'>
         <h3 className="box-title">Cadastro de Usuário</h3>
         <div className='box-body'>

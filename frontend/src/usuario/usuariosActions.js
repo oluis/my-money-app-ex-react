@@ -49,7 +49,8 @@ function submit(values, method){
       dispatch(init())
     })
     .catch(e => {
-      e.response.data.errors.forEach(error => toastr.error('Erro', error))
+      console.log(e)
+      //e.response.data.errors.forEach(error => toastr.error('Erro', error))
     })
   }
 }
@@ -66,6 +67,8 @@ export function remove(values){
   return submit(values, 'delete');
 }
 
-export function cancel(values){
-  console.log(values)
+export function save(values){
+  if(values._id){
+    return update(values)
+  }
 }

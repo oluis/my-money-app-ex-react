@@ -16,7 +16,7 @@ import Form from './usuarioForm'
 //import Form from './billingCycleForm'
 import If from '../common/operador/if'
 
-import {create, update, remove, init, showUpdate} from './usuariosActions'
+import {save, remove, init, showUpdate} from './usuariosActions'
 
 class ListUsuario extends Component {
 
@@ -54,7 +54,7 @@ class ListUsuario extends Component {
 </If>
       <If test={bc.modeEdit}>
         <td colSpan={4}>
-          <Form/>
+          <Form onSubmit={this.props.save}/>
         </td>
       </If>
     </tr>))
@@ -68,7 +68,7 @@ class ListUsuario extends Component {
           <div className='col-md-12'>
             <div className="box box-solid">
               <div className="box-body">
-                <table className='table table-striped'>
+                <table className='table table-bordered table-hover dataTable table-striped'>
                   <thead>
                     <tr>
                       <th style={{width: '10%'}}>Id</th>
@@ -92,8 +92,7 @@ class ListUsuario extends Component {
 const selector = formValueSelector('usuarioForm')
 const mapStateToProps = state => ({list: state.usuario.list})
 const mapDispatchToProps = dispatch => bindActionCreators({
-  create,
-  update,
+  save,
   remove,
   init,
   showUpdate
