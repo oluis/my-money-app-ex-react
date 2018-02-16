@@ -9,4 +9,7 @@ module.exports = function(server){
   const BillingCycle = require('../api/billingCycle/billingCycleService')
   BillingCycle.register(router, '/billingCycles')
 
+  const Usuario = require('../api/user/usuarioService')
+  Usuario.register(router, '/usuarios')
+
 }
